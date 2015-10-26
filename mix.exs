@@ -5,6 +5,7 @@ defmodule ExDweet.Mixfile do
     [app: :exdweet,
      version: "0.0.1",
      elixir: "~> 1.0",
+     description: description,
      package: package,
      deps: deps]
   end
@@ -29,6 +30,12 @@ defmodule ExDweet.Mixfile do
     [{:httpoison, "~> 0.7.4"},
      {:poison, "~> 1.5"},
     ]
+  end
+
+  defp description do
+    """
+    Elixir/Erlang Client for Dweet
+    """
   end
 
   defp package do
