@@ -39,7 +39,7 @@ defmodule ExDweet.Mixfile do
   end
 
   defp package do
-  [ contributors: ["Amit Saxena"],
+  [ maintainers: ["Amit Saxena"],
     licenses: ["MIT"],
     links: %{"Github" => "https://github.com/amit-saxena/exdweet"}
   ]
