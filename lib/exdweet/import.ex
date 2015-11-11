@@ -9,6 +9,7 @@ defmodule ExDweet.Import do
 
       def start do
         {:ok, _} = HTTPoison.start
+        #:application.ensure_all_started(:exdweet)
         {:ok,:exdweet}
       end
 
@@ -58,8 +59,8 @@ defmodule ExDweet.Import do
 
       This function returns `{:ok, result}` if the request is successful, else `{:error, reason}`
       """
-      def get(thing_name, return \\ :latest, type \\ :default, transport \\ :https)  do
-        getp {return,thing_name,transport, type}
+      def get(thing_name, return \\ :latest, type \\ :default, transport \\ :https, options \\ [])  do
+        getp {return,thing_name,transport, type, options}
       end
 
       @doc """
@@ -68,14 +69,14 @@ defmodule ExDweet.Import do
       `get!/4` works similar to `get/5` but result is returned in case of
       successful dweet, an exception is raised in case of failure.
       """
-      def get!(thing_name, return \\ :latest, type \\ :default, transport \\ :https)  do
-        case getp {return,thing_name,transport, type} do
+      def get!(thing_name, return \\ :latest, type \\ :default, transport \\ :https, options \\ [])  do
+        case getp {return,thing_name,transport, type, options} do
           {:ok, response} -> {:ok, response}
           {:error, error} -> raise error
         end
       end
 
-      defp getp({return,thing_name,transport, type}) do
+      defp getp({return,thing_name,transport, type, options}) do
           result = case return do
             :latest -> HTTPoison.get to_string(transport) <> C.url_latest <> thing_name
             :all -> HTTPoison.get to_string(transport) <> C.url_all <> thing_name
@@ -104,6 +105,10 @@ defmodule ExDweet.Import do
           {:ok, %HTTPoison.Response{status_code: 404}} -> {:ok,404}
           {:error, %HTTPoison.Error{reason: reason}} -> {:error,reason}
         end
+      end
+
+      def get_realtime(callback) do #thing_name,
+          #Send callback method to acceptor 
       end
   end
 end
