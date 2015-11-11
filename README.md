@@ -2,7 +2,7 @@
 
 Dweet.io client library for Elixir/Erlang
 
-ExDweet now supports receiving concurrent dweets from multiple things. Included support for Real-time Streams.
+In Works - ExDweet now supports receiving concurrent dweets from multiple things. Included support for Real-time Streams.
 
 ##Usage
 
@@ -34,7 +34,7 @@ Supports following :
 
 - Dweeting and Getting Dweets via http or https.
 - Dweet data passing and retrieval as JSON.
-- Support for concurrent Real-time stream for multiple things
+- In Works - Support for concurrent Real-time stream for multiple things
 
 Features not supported, In works
 - Alerts
