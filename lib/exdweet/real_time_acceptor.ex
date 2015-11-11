@@ -3,8 +3,18 @@ defmodule ExDweet.RealTimeAcceptor do
 
     @doc false
     ## Accept request for dweets
+    #process_realtime_dweets(:ok)
     def acceptor() do
-      #process_realtime_dweets(:ok)
-      acceptor
+      receive do
+        {:getstream,thingname} ->
+          Task.Supervisor.start_child(ExDweet.RealTimeSupervisor, fn -> serve(thingname) end)
+          acceptor
+      end
+    end
+
+    defp serve(thingname) do
+      #when data is received call process_realtime_dweets
+      process_realtime_dweets(thingname)
+      serve(thingname) ##TEMP
     end
 end
